@@ -90,3 +90,37 @@ window.onload = () => {
     // Spawns an initial welcome window when the page loads
     createWindow('Project Nexus Terminal', '<p>Welcome. System initialized.<br>Status: Online</p>');
 };
+
+// 5. Nexus Browser App (DuckDuckGo Edition)
+function openBrowser() {
+    const browserHTML = `
+        <div class="browser-container">
+            <div class="browser-toolbar">
+                <input type="text" class="browser-input" placeholder="Search the web or enter URL..." onkeydown="if(event.key === 'Enter') navigateBrowser(this)">
+                <button class="browser-btn" onclick="navigateBrowser(this.previousElementSibling)">🔍</button>
+            </div>
+            <iframe class="browser-frame" src="https://duckduckgo.com" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+        </div>
+    `;
+    
+    createWindow('Nexus Browser', browserHTML);
+}
+
+function navigateBrowser(inputElement) {
+    const frame = inputElement.parentElement.nextElementSibling;
+    let query = inputElement.value.trim();
+    
+    if (!query) return;
+
+    // Check if the user typed a website URL or a search term
+    if (query.includes('.') && !query.includes(' ')) {
+        // Add https:// if the user forgot it
+        if (!query.startsWith('http://') && !query.startsWith('https://')) {
+            query = 'https://' + query;
+        }
+        frame.src = query;
+    } else {
+        // Perform a private search using DuckDuckGo
+        frame.src = 'https://duckduckgo.com/?q=' + encodeURIComponent(query);
+    }
+}
