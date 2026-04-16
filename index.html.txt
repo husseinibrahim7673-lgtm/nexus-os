@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebOS Launcher</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="os-environment">
+        <div id="desktop"></div>
+        
+        <div id="taskbar">
+            <div class="taskbar-left">
+                <button class="taskbar-icon" onclick="createWindow('Project Nexus Terminal', '<p>System initialized. Ready for commands.</p>')">🖥️</button>
+                <button class="taskbar-icon" onclick="createWindow('Notes', '<textarea placeholder=\'Ad astra per aspera...\'></textarea>')">📝</button>
+            </div>
+            <div class="taskbar-right">
+                <span id="clock">00:00</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="os.js"></script>
+</body>
+</html>
